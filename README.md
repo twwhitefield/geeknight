@@ -6,7 +6,7 @@ An open forum for geeks to connect, discuss &amp; learn latest ideas, technologi
 
 From the GitHub page, navigate to `content` folder and create/edit a `yyyy-mm.html` file. See [content/example.html](content/example.html) for possible parameters.
 
-####  Deploy
+####  Deployment
 * Create a pull request with the changes
 * Complete the review process
 * Rebase and merge the changes to master and this trigger the new deployment using github actions  
