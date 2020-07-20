@@ -11,6 +11,7 @@ unless Nanoc::Filters::Sass.from_binary?
       run_without_binary content, params
     end
 
-    alias_method_chain :run, :binary
+    alias_method :run_without_binary, :run
+    alias_method :run, :run_with_binary
   end
 end

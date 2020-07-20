@@ -32,3 +32,4 @@ tmp
 .bundle
 .rvmrc
 .idea/
+vendor/bundle/*
