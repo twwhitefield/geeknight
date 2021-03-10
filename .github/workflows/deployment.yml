@@ -29,8 +29,6 @@ jobs:
     - name: Install gem
       run: |
         gem install bundler
-        bundle install
-        bundle exec nanoc
     - name: Deploy to GitHub Pages
       uses: crazy-max/ghaction-github-pages@v2
       with:
