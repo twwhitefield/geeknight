@@ -1,41 +1,27 @@
-# Geek Night Bengaluru
+# Geek Night Chennai
 
-An open forum for geeks to connect, discuss &amp; learn latest ideas, technologies and trends in software development
+an open forum for geeks to connect, discuss &amp; learn latest ideas, technologies and trends in software development
 
-## Quick Start & Auto Deployment
+# Development
 
-From the GitHub page, navigate to `content` folder and create/edit a `yyyy-mm.html` file. See [content/example.html](content/example.html) for possible parameters.
+Using [nanoc](//nanoc.ws) for static site generation. Jekyll/Octopress are hard-coded for blogging, while Nanoc is much simpler, doesn't take any assumptions and allows to build whatever type of content (not just blogs).
 
-####  Deployment
-* Create a pull request with the changes
-* Complete the review process
-* Rebase and merge the changes to master and this trigger the new deployment using github actions  
- 
+To start developing,
 
-
-**NOTE:** GitHub's "create/edit file" buttons are very small and hard to find, but they are there (as long as you're logged in and have push rights to this repo).
-
-## Manual Development
-
-We're using [nanoc](//nanoc.ws) for static site generation. Jekyll/Octopress are hard-coded for blogging, while Nanoc is much simpler, doesn't take any assumptions and allows to build whatever type of content (not just blogs).
-
-* Make sure you have RVM installed
-* Clone this repo
-* Run `bundle install`
+* Clone this repository
+* Do `bundle install`. You'll need RVM + Ruby 3.0.1
+* Make changes (see below folder structure). Mostly you'll be dealing with `content`
 * Run `nanoc` to compile the website
 * Run `nanoc view` to start a server and browse to `localhost:3000`
 
-For ease, there is a Guardfile. You can run `bundle exec guard`, it will keep watching for changes and re-compile the site whenever any file is changed.
+# Folders of interest
 
-# Folder Structure
-
-* `assets` - contains all assets
-* `assets/app.sass` - contains the main stylesheet
-* `assets/img/speakers` - contains speaker images
 * `content` - content for each geek night
 * `layouts` - layouts for default and archive versions
 * `Rules` - routing rules
-* `gh-pages` - folder containing the generated site
+* `nanoc.yaml` - contains all the rules for files and data sources
+* `content/assets` - contains all assets
+* `content/assets/app.sass` - contains the main stylesheet
 
 # Front-End Development
 

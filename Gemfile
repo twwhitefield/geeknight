@@ -1,13 +1,7 @@
 source "https://rubygems.org"
 
-gem 'sass', '~> 3.2.12'
-gem 'bourbon', '~> 3.2.3'
-gem 'nanoc', '~> 3.6.5'
-gem 'multi_json', '~> 1.8.0'
-gem 'activesupport', '~> 4.1.11', require: 'active_support/all'
-
-gem 'guard-nanoc', '~> 1.0.0'
-gem 'terminal-notifier-guard', '~> 1.5.3'
-
-gem 'listen', '~> 1.3.1', require: false
-gem 'adsf', '~> 1.1.1', require: false
+gem 'nanoc', '~> 4.12.1'
+gem 'adsf', '~> 1.2', '>= 1.2.1'
+gem 'puma', '~> 5.2', '>= 5.2.2'
+gem 'activesupport', '~> 6.1', '>= 6.1.3.1', require: 'active_support/all'
+gem 'sass', '~> 3.4', '>= 3.4.22'

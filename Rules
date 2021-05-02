@@ -13,52 +13,50 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-ignore '/example/'
-ignore 'css/*.scss'
+# Ignore files to be processed inside content folder
+ignore '/example.html'
+ignore '/assets/css/**/*.scss'
 
-compile 'css/*.sass' do
-  filter :sass, filename: item.raw_filename, load_paths: [ '.', 'assets/css/' ], cache: false
+# Complile sass file matching the pattern
+compile '/assets/css/*.sass' do
+  puts(item.raw_filename)
+  filter :sass, filename: item.raw_filename, load_paths: [ '.', '/assets/css/' ], cache: false
 end
 
-compile '*' do
-  if item.binary?
-    # don’t filter binary items
-  else
+# Compilation rule for setting layout
+# Inside content folder default.html.erb and archive.html.erb must be present
+compile '/*.html' do
+  unless item.binary?
     filter :erb
-    layout start_date.future? ? 'default' : 'archive'
+    layout start_date.future? ? '/default.*' : '/archive.*'
   end
 end
 
-compile '*', rep: :preview do
-  if item == latest
-    filter :erb
-    layout 'preview'
-  end
+# Empty compilation rules for assets for other file type. Ex - HTML
+compile '/assets/**/*' do
 end
 
-route 'css/*.sass' do
+route '/assets/css/*.sass' do
   # Compile SASS to CSS
-  item.identifier.gsub('.sass', '.css').chop
+  item.identifier.to_s.gsub('.sass', '.css').sub(/\A\/assets/, '')
 end
 
-route '*' do
+route '/assets/**/*' do
+  item.identifier.to_s.sub(/\A\/assets/, '')
+end
+
+route '/*.html' do
   if item.binary?
+    puts item.raw_filename
     item.identifier.chop
-  elsif item == latest
-    '/index.html'
   else
-    start_date.strftime('/%b%Y.html').downcase
+    archived_path = "/#{start_date.strftime('%Y-%m')}.html"
+    # start_date.future? '/index.html' : archived_path
+
+    # Use latest instead of start date, so even if contents with
+    # past date is available, latest one is routed as index.html
+    item == latest ? '/index.html' : archived_path
   end
 end
 
-route '*', rep: :preview do
-  if item == latest
-    '/preview.html'
-  end
-end
-
-route '/', rep: :index do
-  '/index.html'
-end
-
-layout '*', :erb
+layout '/*', :erb
